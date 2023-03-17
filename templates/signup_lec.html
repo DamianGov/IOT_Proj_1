@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+  <form method="POST" action="" style="border: 1px solid #ccc;" novalidate>
+    <div class="container">
+      {{ form.hidden_tag() }}
+      <h1>Sign Up</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+
+      <div class="form-field">
+        <label for="name"><b>Name</b></label>
+        <br>
+        {{ form.name(class_='form-input') }}
+        {% for e in form.name.errors %}
+          <p class="form-error">{{ e }}</p>
+        {% endfor %}
+      </div>
+
+      <div class="form-field">
+        <label for="number"><b>Staff Number</b></label>
+        <br>
+        {{ form.number(class_='form-input') }}
+        {% for e in form.number.errors %}
+          <p class="form-error">{{ e }}</p>
+        {% endfor %}
+      </div>
+
+      <div class="form-field">
+        <label for="faculty"><b>Faculty</b></label>
+        <br>
+        {{ form.faculty(class_='form-input') }}
+        {% for e in form.faculty.errors %}
+          <p class="form-error">{{ e }}</p>
+        {% endfor %}
+      </div>
+
+      <div class="form-field">
+        <label for="email"><b>Email</b></label>
+        <br>
+        {{ form.email(class_='form-input') }}
+        {% for e in form.email.errors %}
+          <p class="form-error">{{ e }}</p>
+        {% endfor %}
+      </div>
+
+      <div class="form-field">
+        <label for="password"><b>Password</b></label>
+        <br>
+        {{ form.password(class_='form-input') }}
+        {% for e in form.password.errors %}
+          <p class="form-error">{{ e }}</p>
+        {% endfor %}
+      </div>
+
+      <div class="form-field">
+        <label for="password_confirm"><b>Confirm Password</b></label>
+        <br>
+        {{ form.confirmpass(class_='form-input') }}
+        {% for e in form.confirmpass.errors %}
+          <p class="form-error">{{ e }}</p>
+        {% endfor %}
+      </div>
+
+      <div class="clearfix">
+        <button type="submit" class="signupbtn">Sign Up</button>
+      </div>
+      <p><a href="{{url_for('login')}}" style="background-color: #3e7741; color: #e0e0e0; padding: 10px; border-radius: 5px; text-decoration: none;">Go to Login</a></p></div>
+  </form>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base2.html' %}
+
+{% block title %}
+View Appointments
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>View Appointments</h1>
+  <table class="status-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Student Number</th>
+        <th>Student Name</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if obj %}
+      {% for o in obj %}
+      <tr>
+        <td>{{o['app_date']}}</td>
+        <td>{{o['app_time']}}</td>
+        <td>{{o['stud_num']}}</td>
+        <td>{{o['stud_name']}}</td>
+        <td style="text-transform: capitalize;">{{o['status']}}</td>
+        {% if o['status'] == "pending" %}
+        <td><a href="{{url_for('approve_appoint', id = o['doc_id'])}}" style="background-color: #2b9b54; color: #e0e0e0; padding: 7px; border-radius: 5px; text-decoration: none;">Approve</a></td>
+        {% endif %}
+        {% if o['status'] in ["approved","pending"] %}
+        <td><a href="{{url_for('cancel_appoint', id = o['doc_id'])}}" style="background-color: #a3182d; color: #e0e0e0; padding: 7px; border-radius: 5px; text-decoration: none;">Cancel</a></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+      {% else %}
+      <tr>
+          <td colspan="7"><center>No Appointments</center></td>
+       </tr>
+       {% endif %}
+    </tbody>
+  </table>
+
+</div>
+{% endblock %}

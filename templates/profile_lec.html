@@ -1,0 +1,42 @@
+{% extends "base2.html" %}
+{% block title %}User Profile{% endblock %}
+{% block content %}
+
+	<div class="container">
+		<div class="profile">
+			<div class="profile-image">
+				<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+			</div>
+			<div class="profile-details">
+				<h1 class="name">{{form.name}}</h1>
+</div>
+</div>
+<h2>Personal Details</h2>
+<ul>
+<li>
+<label>Full Name:</label>
+<p>{{form.name}}</p>
+</li>
+<li>
+<label>Staff Number:</label>
+<p>{{form.number}}</p>
+</li>
+<li>
+<label>Staff Email:</label>
+<p>{{form.email}}</p>
+</li>
+</ul>
+<h2>University Details</h2>
+<ul>
+<li>
+<label>Faculty:</label>
+<p>{{form.faculty}}</p>
+</li>
+</ul>
+<nav>
+<ul>
+	<li><centre><a href="{{url_for('change_pass')}}" style="background-color: grey; border-color: black; border-radius: 5px;" class="btn btn-secondary">Change Password</a></li>
+</ul>
+</nav>
+</div>
+{% endblock %}

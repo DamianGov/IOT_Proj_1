@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}{% endblock %}</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f8f9fa;
+		}
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+		.profile {
+			display: flex;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+		.profile-image {
+			flex: 0 0 70px;
+			height: 70px;
+			margin-right: 20px;
+			overflow: hidden;
+			border-radius: 50%;
+		}
+		.profile-image img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+		.name {
+			font-size: 24px;
+			font-weight: bold;
+			margin: 0;
+		}
+
+    h1 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+		h2 {
+			font-size: 24px;
+			font-weight: bold;
+			margin-top: 40px;
+			margin-bottom: 20px;
+		}
+		h3 {
+			font-size: 20px;
+			font-weight: bold;
+			margin-top: 30px;
+			margin-bottom: 10px;
+		}
+		h4 {
+			font-size: 18px;
+			font-weight: bold;
+			margin-top: 20px;
+			margin-bottom: 10px;
+		}
+		ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+		}
+		li {
+			margin-bottom: 10px;
+		}
+		label {
+			font-weight: bold;
+			display: block;
+			margin-bottom: 5px;
+		}
+		input {
+			padding: 10px;
+			border-radius: 5px;
+			border: none;
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+			width: 100%;
+			margin-bottom: 10px;
+		}
+
+		.status {
+            text-transform: capitalize;
+            font-weight: bold;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .status-withdrawn{
+            background-color: #ffd700;
+        }
+
+        .status-accepted {
+            background-color: #007f00;
+        }
+
+        .status-declined {
+            background-color: #ff0000;
+        }
+  nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  height: 70px;
+  padding: 0 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav a {
+  color: #030303;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+nav a:hover {
+  background-color: #645151;
+  color: #fcf8f8;
+  transition: all 0.3s ease-in-out;
+}
+
+		.logo {
+			font-size: 24px;
+			font-weight: bold;
+		}
+        .form-field {
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-field input[type="text"],
+.form-field select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+}
+
+.form-field select {
+  height: 40px;
+}
+
+.form-error {
+  color: red;
+  margin-top: 5px;
+}
+
+    .signupbtn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .signupbtn:hover {
+        background-color: #3e8e41;
+    }
+
+    table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 800px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        a {
+            color: #2a9fd6;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        input[type="submit"]
+         {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            color: #333;
+            font-size: 16px;
+            font-family: inherit;
+        }
+        input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #444;
+        }
+        .error {
+            color: red;
+        }
+        select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 16px;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23333' d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 16px auto;
+}
+
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+.form-input[type="radio"] {
+  transform: scale(0.8);
+  margin-right: 5px;
+}
+form {
+            max-width: 550px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .flash-message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            }
+            .flash-error {
+              background-color: #ffcccc;
+            }
+            .flash-success {
+              background-color: #4CAF50;
+            }
+	</style>
+</head>
+<body>
+	{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div id="flash-message-el" class="flash-message flash-{{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+	<header>
+		<nav>
+			<ul>
+				<li><div class="logo">Vacancy Portal</div></li>
+				<li><a href="{{url_for('profile_lec')}}">Profile</a></li>
+				<li><a href="{{url_for('create_vac')}}">Create Vacancy</a></li>
+				<li><a href="{{url_for('v_board')}}">Vacancy Board</a></li>
+				<li><a href="{{url_for('view_app_lec')}}">View Applications</a></li>
+				<li><a href="{{url_for('view_lec_appoint')}}">View Appointments</a></li>
+				<li><a href="{{url_for('logout')}}">Logout</a></li>
+			</ul>
+		</nav>
+	</header>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+	<script type="text/javascript">
+		setTimeout(function() {
+			var flash_mes = document.getElementById("flash-message-el");
+			flash_mes.style.opacity = "0";
+			setTimeout(function() {
+				flash_mes.parentNode.removeChild(flash_mes);
+			}, 500);
+		}, 3000);
+</script>
+</body>
+</html>

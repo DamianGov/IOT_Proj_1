@@ -1,0 +1,35 @@
+{% extends "base3.html" %}
+{% block title %}Vacancy Board{% endblock %}
+{% block content %}
+</br>
+<h1>Vacancy Board</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Module</th>
+                <th>Description</th>
+                <th>Type of Position</th>
+                <th>Lecturer</th>
+                <th>Apply</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if obj %}
+            {% for d in obj %}
+                <tr>
+                    <td>{{d['module']}}</td>
+                    <td>{{d['description']}}</td>
+                    <td>{{d['type']}}</td>
+                    <td>{{d['lecturer']}}</td>
+                    <td><a href="{{url_for('create_application', vac_id = d['vac_id'])}}" style="background-color: #2b9b54; color: #e0e0e0; padding: 7px; border-radius: 5px; text-decoration: none;">Apply</a></td>
+                </tr>
+            {% endfor %}
+            {% else %}
+             <tr>
+                <td colspan="5"><center>No Vacancies</center></td>
+             </tr>
+             {% endif %}
+        </tbody>
+    </table>
+{% endblock %}
+

@@ -1,0 +1,45 @@
+{% extends 'base2.html' %}
+
+{% block title %}
+    Vacancy Board
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1 class="text-center mb-4">Vacancy Board</h1>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th style="width: 25%;" class="text-center">Description</th>
+          <th>Type of Position</th>
+          <th>Applications Pending</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if obj %}
+        {% for d in obj %}
+        <tr>
+          <td>{{d['module']}}</td>
+          <td style="width: 25%;" class="text-center">{{d['description']}}</td>
+          <td>{{d['type']}}</td>
+          <td>{{d['count']}}</td>
+          <td>{{d['status_def']}}</td>
+          {% if d['status'] == '1' %}
+          <td><a href="{{url_for('withdraw_vac',vac_id = d['vac_id'])}}" style="background-color: #a3182d; color: #e0e0e0; padding: 7px; border-radius: 5px; text-decoration: none;">Withdraw</a></td>
+          {% else %}
+          <td></td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr><td colspan="6"><center>No Vacancies</center></td>/tr>
+          {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

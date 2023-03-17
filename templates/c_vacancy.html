@@ -1,0 +1,92 @@
+{% extends 'base2.html' %}
+
+{% block title %}
+    Create Vacancy
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Create Vacancy</h2>
+        <form method="POST" action="" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="form-field">
+                <label for="module">Module:</label>
+                {{ form.module(class="form-control", placeholder="Enter module") }}
+                {% for error in form.module.errors %}
+                    <div class="form-error">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="form-field">
+                <label for="description">Description:</label>
+                {{ form.description(class="form-control", placeholder="Enter Description") }}
+                {% for error in form.description.errors %}
+                    <div class="form-error">{{ error }}</div>
+                {% endfor %}
+            </div>
+    
+            <div class="form-field">
+                <label><b>Position</b></label>
+                <br>
+                <label class="radio-inline">
+                    {{ form.position_type(value='1') }}
+                </label>
+                {% for p in form.position_type.errors %}
+                    <p class="form-error">{{ p }}</p>
+                {% endfor %}
+            </div>
+    
+            <button type="submit" class="signupbtn">Create</button>
+        </form>
+    </div>
+    {% endblock %}
+
+    {% block extra_styles %}
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f8f9fa;
+            }
+            
+            .form-field label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+    
+            .form-field input[type="text"],
+            .form-field select {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                border-radius: 5px;
+                border: none;
+                box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+                margin-bottom: 10px;
+            }
+    
+            .form-field select {
+                height: 40px;
+            }
+    
+            .form-error {
+                color: red;
+                margin-top: 5px;
+            }
+    
+            .signupbtn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: bold;
+                transition: all 0.3s ease-in-out;
+            }
+    
+            .signupbtn:hover {
+                background-color: #3e8e41;
+            }
+        </style>
+    {% endblock %}

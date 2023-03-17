@@ -1,0 +1,78 @@
+{% extends "base3.html" %}
+{% block title %}User Profile{% endblock %}
+{% block content %}
+
+	<div class="container">
+		<div class="profile">
+			<div class="profile-image">
+				<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+			</div>
+			<div class="profile-details">
+				<h1 class="name">{{form.name}}</h
+
+1>
+</div>
+</div>
+<h2>Personal Details</h2>
+<ul>
+<li>
+<label>Full Name:</label>
+<p>{{form.name}}</p>
+</li>
+<li>
+<label>student Number:</label>
+<p>{{form.number}}</p>
+</li>
+<li>
+<label>Student Email:</label>
+<p>{{form.email}}</p>
+</li>
+<li>
+<label>ID number:</label>
+<p>{{form.ID}}</p>
+</li>
+</ul>
+<h2>Student University Details</h2>
+<ul>
+<li>
+<label>Enrolled Course:</label>
+<p>{{form.course}}</p>
+</li>
+<li>
+<label>Current Position:</label>
+<p> {{form.currentpos}}</p>
+</li>
+{% if form.modules.data != "" %}
+  <li style="list-style: none; margin-left: 0;">
+    <label style="font-weight: bold; margin-right: 10px;">Modules Tutoring:</label>
+    <span style="background-color: #eee; padding: 5px; border-radius: 5px;">{{ form.modules }}</span>
+  </li>
+{% endif %}
+
+</ul>
+<h2>Update Details</h2>
+<ul>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <h3 for="course">Résumé</h3>
+            <p><a href="{{url_for('download', stud=form.number.data)}}" style="background-color: #474558; color: #e0e0e0; padding: 10px; border-radius: 5px; text-decoration: none;">View Résumé</a></p>
+            <h3>Update Résumé:</h3>
+            <form method="POST" enctype="multipart/form-data" action="/update/{{form.number.data}}">
+                <input type="hidden" name="MAX_FILE_SIZE" value="5242880">
+                    <input accept=".pdf" id="file" name="file" required type="file">
+                    <p>Only PDF is Allowed. Maximum file size: 5 MB.</p>
+                <input type="Submit" value="Update Résumé"/>
+            </form>
+        </div>
+    </div>
+</ul>
+
+</div>
+<br>
+<nav>
+    <ul>
+        <li><centre><a href="{{url_for('change_pass')}}" style="background-color: grey; border-color: black; border-radius: 5px;" class="btn btn-secondary">Change Password</a></li>
+    </ul>
+    </nav>
+    
+{% endblock %}

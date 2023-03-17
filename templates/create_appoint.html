@@ -1,0 +1,21 @@
+{% extends "base3.html" %}
+{% block title %}Create Appointment{% endblock %}
+{% block content %}
+    <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        <h1>Create Appointment</h1>
+        <p>Lecturer: {{ form.lecturer(class="select") }}</p>
+        {% for e in form.lecturer.errors %}
+            <p class="error">{{ e }}</p>
+        {% endfor %}
+        <p>Date: {{ form.date_app }}</p>
+        {% for e in form.date_app.errors %}
+            <p class="error">{{ e }}</p>
+        {% endfor %}
+        <p>Time: {{ form.time_app }}</p>
+        {% for e in form.time_app.errors %}
+            <p class="error">{{ e }}</p>
+        {% endfor %}
+        <p>{{ form.submit }}</p>
+    </form>
+    {% endblock %}

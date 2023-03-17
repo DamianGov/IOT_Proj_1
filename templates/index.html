@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<title>Login - Vacancy Portal</title>
+
+<head>
+
+  <style>
+body {
+			font-family: Arial, sans-serif;
+			background-color: #f8f9fa;
+		}
+h2 {
+  text-align: center;
+  margin-top: 50px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+
+label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  width: 350px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #888888;
+  padding: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  background-color: #f2f2f2;
+}
+
+input[type="submit"] {
+  background-color: #348ada;
+  color: white;
+  padding: 14px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type="submit"]:hover {
+  background-color: #3f4358;
+}
+
+.container p {
+  margin: 0;
+}
+
+.container a {
+  color: #061d24;
+  text-decoration: none;
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
+
+.psw {
+  float: right;
+}
+.flash-message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            }
+            .flash-error {
+              background-color: #ffcccc;
+            }
+            .flash-success {
+              background-color: #4CAF50;
+            }
+
+  </style>
+</head>
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+      {% for category, message in messages %}
+          <div id="flash-message-el" class="flash-message flash-{{ category }}">
+              {{ message }}
+          </div>
+      {% endfor %}
+  {% endif %}
+{% endwith %}
+  <h2>Vacancy Portal</h2>
+
+  <form action="" method="POST" novalidate>
+    <p>Are you:</p>
+    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
+      <input type="radio" name="UserType" id="Student" value="Student" onclick="studentChange()" checked>
+      <label for="html">Student</label>
+      <input type="radio" name="UserType" id="Lecturer" value="Lecturer" onclick="lecChange()">
+      <label for="css">Lecturer</label></fieldset>
+
+    <div class="container">
+      {{form.hidden_tag()}}
+      <b><label for="number" id="lbNumber">Student Number</label></b>
+      {{form.number}}
+      <p>
+      {% for e in form.number.errors%}
+          <ul>
+            <li style="color:red;">{{e}}</li>
+          </ul>
+      {% endfor %}
+      </p>
+      <label for="psw"><b>Password</b></label>
+      {{form.password}}
+      <p>
+      {% for e in form.password.errors%}
+          <ul>
+            <li style="color:red;">{{e}}</li>
+          </ul>
+      {% endfor %}
+      </p>
+
+
+      {{form.submit}}
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <a href="{{url_for('signup_stud')}}" id="signup">Go To Sign Up</a>
+      <span class="psw"> <a href="{{url_for('forgot_pass')}}"> Forgot password?</a></span>
+    </div>
+  </form>
+
+  <script type="text/javascript">
+    setTimeout(function() {
+        var flash_mes = document.getElementById("flash-message-el");
+        flash_mes.style.opacity = "0";
+        setTimeout(function() {
+            flash_mes.parentNode.removeChild(flash_mes);
+        }, 500);
+    }, 3000);
+</script>
+</body>
+<script type="text/javascript">
+  function studentChange() {
+    document.getElementById('number').placeholder = 'Enter Student Number';
+    document.getElementById('lbNumber').innerHTML = 'Student Number';
+    document.getElementById('signup').href = "{{url_for('signup_stud')}}";
+  }
+  function lecChange() {
+    document.getElementById('number').placeholder = 'Enter Staff Number';
+    document.getElementById('lbNumber').innerHTML = 'Staff Number';
+    document.getElementById('signup').href = "{{url_for('signup_lec')}}";
+  }
+  function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    return !(charCode > 31 && (charCode < 48 || charCode > 57));
+  }
+</script>
+
+</html>

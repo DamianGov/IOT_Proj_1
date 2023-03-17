@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        form {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        input[type="password"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            margin-bottom: 10px;
+        }
+        li {
+            color: red;
+            font-size: 14px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="POST" novalidate>
+        {{form.hidden_tag()}}
+        <h2>Reset Password</h2>
+        <label for="npsw"><b>New Password</b></label>
+        {{form.newPas}}
+        <br>
+        {% for e in form.newPas.errors%}
+          <ul>
+            <li>{{e}}</li>
+          </ul>
+        {% endfor %}
+        <label for="psw-repeat"><b>Repeat Password</b></label>
+        {{form.confirmpass}}
+        <br>
+        {% for e in form.confirmpass.errors%}
+          <ul>
+            <li>{{e}}</li>
+          </ul>
+        {% endfor %}
+        <p>{{form.submit}}</p>
+      </form>   
+</body>
+</html>

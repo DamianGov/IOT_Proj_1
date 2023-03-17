@@ -1,0 +1,43 @@
+{% extends "base3.html" %}
+{% block title %}Application Status{% endblock %}
+{% block content %}
+    <h1>Application Status</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Module</th>
+                <th>Description</th>
+                <th>Type of Position</th>
+                <th>Lecturer</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if obj %}
+            {% for a in obj %}
+                <tr>
+                    <td>{{a['module']}}</td>
+                    <td>{{a['description']}}</td>
+                    <td>{{a['type']}}</td>
+                    <td>{{a['lec_name']}}</td>
+                    <td >
+                        <span class="status status-{{a['status']}}" style="text-transform: capitalize;">
+                            {{a['status']}}
+                        </span>
+                    </td>
+                    <td>
+                        {% if a['status'] == 'pending' %}
+                            <a href="{{url_for('withdraw',app_id = a['app_id'])}}" style="background-color: #a3182d; color: #e0e0e0; padding: 7px; border-radius: 5px; text-decoration: none;">Withdraw</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="6"><center>No Applications</center></td>
+             </tr>
+             {% endif %}
+        </tbody>
+    </table>
+    {% endblock %}

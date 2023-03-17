@@ -1,0 +1,42 @@
+{% extends "base3.html" %}
+{% block title %}View Appointments{% endblock %}
+{% block content %}
+<h1>View Appointments</h1>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Lecturer</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if obj %}
+            {% for o in obj %}
+            <tr>
+                <td>{{o['app_date']}}</td>
+                <td>{{o['app_time']}}</td>
+                <td>{{o['lec_name']}}</td>
+                <td>
+                    <span style="text-transform: capitalize; text-align: center;" class="status status-{{o['status']}}">{{o['status']}} </span></td>
+                {% if o['status'] in ["approved","pending"] %}
+                <td><a href="{{url_for('cancel_appoint', id = o['doc_id'])}}" style="background-color: #a3182d; color: #e0e0e0; padding: 7px; border-radius: 5px; text-decoration: none;">Cancel</a></td>
+                {% else %}
+                <td></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            {% else %}
+             <tr>
+               <td colspan="5"><center>No Appointments</center></td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+{% endblock %}
+
+

@@ -1,0 +1,35 @@
+{% extends "base2.html" %}
+{% block title %}Accepted Application{% endblock %}
+{% block content %}
+<body>
+    <h1>Accepted Application</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Module</th>
+                <th>Description</th>
+                <th>Type of Position</th>
+                <th>Student Number</th>
+                <th>Student Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if obj %}
+            {% for a in obj %}
+                <tr>
+                    <td>{{a['module']}}</td>
+                    <td>{{a['description']}}</td>
+                    <td>{{a['type']}}</td>
+                    <td>{{a['number']}}</td>
+                    <td>{{a['name']}}
+                    </td>
+                </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="5"><center>No Applications</center></td>
+             </tr>
+             {% endif %}
+        </tbody>
+    </table>
+    {% endblock %}

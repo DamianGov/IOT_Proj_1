@@ -1,0 +1,48 @@
+{% extends "base2.html" %}
+{% block title %}
+    View Applications
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>View Applications</h1>
+        <nav>
+            <ul>
+        <a href="{{url_for('view_accepted_app')}}" style="background-color: lightgrey; border-color: black; border-radius: 5px;">Approved Applications</a>
+        </ul>
+        </nav>
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th>Name</th>
+                    <th>Student Number</th>
+                    <th>Module</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if obj %}
+                {% for v in obj %}
+                <tr>
+
+                    <td>{{v['name']}}</td>
+                    <td>{{v['student_num']}}</td>
+                    <td>{{v['module']}}</td>
+                    <td>{{v['description']}}</td>
+                    <td>
+                        <a href="{{url_for('download', stud=v['student_num'])}}" style="background-color: #474558; color: #e0e0e0; padding: 7px; border-radius: 5px; text-decoration: none;">View Résumé</a>
+                        <a href="{{url_for('accept_app',app_id = v['app_id'])}}" style="background-color: #2b9b54; color: #e0e0e0; padding: 7px; border-radius: 5px; text-decoration: none;">Accept</a>
+                        <a href="{{url_for('decline_app',app_id = v['app_id'])}}" style="background-color: #a3182d; color: #e0e0e0; padding: 7px; border-radius: 5px; text-decoration: none;">Decline</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr><td colspan="6"><center>No Applications</center></td></tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
